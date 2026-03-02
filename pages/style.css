@@ -202,7 +202,7 @@ table > tbody > tr > td.sheet-template_label {
 }
 
 .width-100 {
-    width: 100%;
+    width: 100% !important;
 }
 
 .flex-column {
@@ -247,5 +247,5 @@ table > tbody > tr > td.sheet-template_label {
     color: #405c83
 }
 .handout > div {
-    width: 100%;
+    width: 100% !important;
 }
