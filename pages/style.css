@@ -200,3 +200,52 @@ table > tbody > tr > td.sheet-template_label {
     flex-direction: column;
     align-items: center;
 }
+
+.width-100 {
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.handout {
+    /* display: flex; */
+    flex-direction: column;
+    font-size: 14px ; 
+    font-family: "gulim important" ; 
+    line-height: 180% ; 
+    background: #ffffff ; 
+    text-align: center ; 
+    display: block ; 
+    padding: 10px 15px ; 
+    font-style: normal ; 
+    font-weight: normal ; 
+    margin-left: -4px ; 
+    text-decoration: none ; 
+    border: 1px solid #a9c3e6 ; 
+    box-shadow: -4px 4px 0 #a9c3e6 ; 
+    letter-spacing: -1px ; 
+    color: #405c83
+}
+.handout > .thin {
+    font-size: 12px ; 
+    font-family: "gulim important" ; 
+    color: #ffffff ; 
+    text-align: center ; 
+    display: block ; 
+    padding: 0px 15px ; 
+    padding-bottom: 0 ; 
+    font-style: normal ; 
+    font-weight: normal ; 
+    margin-left: -4px ; 
+    text-decoration: none ; 
+    letter-spacing: -1px ; 
+    border-top: none ; 
+    border-bottom: none ; 
+    color: #405c83
+}
+.handout > div {
+    width: 100%;
+}

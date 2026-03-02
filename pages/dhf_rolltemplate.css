@@ -1,0 +1,391 @@
+@font-face {
+    font-family: 'HeirofLightBold';
+    src: url('https://imgsrv.roll20.net/?src=https%3A//cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/HeirofLightBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'HeirofLightRegular';
+    src: url('https://imgsrv.roll20.net/?src=https%3A//cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/HeirofLightRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://imgsrv.roll20.net/?src=https%3A//cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.charsheet /****************************************************
+	Reset
+****************************************************/
+
+.charsheet select,.charsheet div,.charsheet button,.charsheet textarea,.charsheet span,.charsheet input,.charsheet img,.charsheet label{box-sizing: border-box; outline:0; outline:0; appearance:none !important; -webkit-appearance:none !important;}
+.charsheet .ui-dialog .charsheet {padding:0;}
+.charsheet .sheet-wrap {font-size:12px;}
+.charsheet .sheet-wrap * {color:#000; outline:0 !important; font-family:'RIDIBatang'; letter-spacing:-0.02em;}
+.charsheet .sheet-wrap p {margin:0;}
+.charsheet .sheet-wrap input,.charsheet .sheet-wrap textarea,.charsheet .sheet-wrap select,.charsheet .sheet-wrap .uneditable-input {margin:0; border-radius:0 !important;}
+.charsheet .sheet-wrap input[type="checkbox"],.charsheet .sheet-wrap input[type="radio"] {display:block; position:absolute; top:0; left:0; opacity:0; border:none !important;}
+.charsheet .sheet-wrap input[type="text"],.charsheet .sheet-wrap input[type="number"] {border:none; height:30px; border-radius:0; background:transparent; padding:0 5px; font-size:12px; width:100%;}
+.charsheet .sheet-wrap select {border:none; height:30px; padding:0 5px; font-size:12px; width:100%; background:transparent;}
+.charsheet .sheet-wrap input[type="number"]::-webkit-outer-spin-button,.charsheet .sheet-wrap input[type="number"]::-webkit-inner-spin-button {appearance:none; -webkit-appearance:none; -moz-appearance:none; margin:0;}
+.charsheet .sheet-wrap select,.charsheet .sheet-wrap input[type="checkbox"],.charsheet .sheet-wrap input[type="radio"],.charsheet .sheet-wrap button {cursor:pointer;}
+.charsheet .sheet-wrap input:-internal-autofill-selected {background-color:transparent !important; appearance:none !important; -webkit-appearance:none !important;  -moz-appearance:none !important;}
+.charsheet .sheet-wrap input[type="number"] {}
+.charsheet .sheet-wrap select * {color:#000 !important;}
+.charsheet .sheet-wrap input[type="checkbox"],.charsheet .sheet-wrap input[type="radio"],.charsheet .sheet-wrap button,.charsheet .sheet-wrap select {box-shadow: none !important; appearance:none; -webkit-appearance:none; -moz-appearance:none;}
+.charsheet .sheet-wrap select {padding-right:15px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/htSLM5m.png') no-repeat top 50% right 2px;}
+.charsheet .sheet-wrap button {border:none; margin:0; background:transparent;}
+.charsheet .sheet-wrap textarea {width:100%; background:transparent; border:none; resize:none; line-height:1.5;}
+.charsheet .sheet-wrap fieldset {margin:0; padding:0; border:none;}
+.charsheet .sheet-wrap .repcontainer.editmode .repitem .itemcontrol {z-index:990 !important; height:auto; top:0; bottom:0;}
+.charsheet .sheet-wrap .repcontainer.editmode .repitem .itemcontrol button,.charsheet .sheet-wrap .repcontainer.editmode .repitem .itemcontrol a {width:30px; height:30px; border:none; border-radius:0; line-height:30px; padding:0; text-align:center;}
+.charsheet .sheet-wrap .repcontainer.editmode .repitem .itemcontrol button {background:red;}
+
+.charsheet .sheet-wrap .repcontrol {display:block; position:relative; overflow:hidden; margin-bottom:30px; background:#a8b7c9; border-radius:9em; font-size:11px;}
+.charsheet .sheet-wrap .repcontrol:before {content:""; display:block; position:absolute; width:1px; top:5px; bottom:5px; left:50%; background:#fff; opacity:.5;}
+.charsheet .sheet-wrap .repcontrol > * {height:20px; line-height:20px; padding:0 10px; font-size:11px; font-weight:400; color:#fff;}
+
+.charsheet .sheet-wrap .sheet-dice {display:inline-block; vertical-align:middle; border:none; padding:0 !important; margin:0 !important; width:30px; height:30px; border-radius:0; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/2dNsooQ.png') no-repeat 50% 50%;}
+.charsheet .sheet-wrap .sheet-dice:before {display:none !important;}
+
+.charsheet .sheet-wrap input::placeholder {color:rgba(0, 0, 0, .3);}
+.charsheet .sheet-wrap textarea::placeholder {color:rgba(0, 0, 0, .3);}
+
+.charsheet .sheet-tal {text-align:left !important;}
+.charsheet .sheet-tar {text-align:right !important;}
+.charsheet .sheet-tac {text-align:center !important;}
+
+.charsheet .sheet-wrap .inlinerollresult {display:inline !important; font-size:1em !important; opacity:1 !important; padding:0 !important; background:transparent !important; border:none !important;}
+
+.charsheet .sheet-text-group {border-bottom:1px solid rgba(0,0,0,.2);}
+.charsheet .sheet-text-group strong {display:inline-block; position:relative; margin-right:3px; font-weight:600; font-size:12px; vertical-align:baseline; font-family: 'HeirofLightRegular' !important;}
+.charsheet .sheet-text-group input[type="text"],.charsheet .sheet-text-group input[type="number"],.charsheet .sheet-text-group select {width:auto; height:30px; vertical-align:baseline; font-family: 'RIDIBatang'; font-weight:800; font-size:14px; padding:0;}
+
+.charsheet .sheet-text-group .sheet-state {position:relative; float:right; line-height:30px;}
+.charsheet .sheet-text-group .sheet-state > span {display:inline-block; position:relative; vertical-align:baseline;}
+.charsheet .sheet-text-group .sheet-state > span + span {margin-left:5px;}
+.charsheet .sheet-text-group .sheet-state > span > span {color:rgba(0,0,0,.4);}
+.charsheet .sheet-text-group .sheet-state input[type="checkbox"] {display:block; position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; z-index:1;}
+.charsheet .sheet-text-group .sheet-state input[type="checkbox"]:checked + span {color:#000;}
+.charsheet .sheet-text-group .sheet-dice-check {display:inline-block; vertical-align:middle; line-height:30px; padding:0 1.5em;}
+
+
+.charsheet /*****************************************
+	Dice Control Area
+*****************************************/
+
+.charsheet .sheet-dic {position:relative;}
+
+.charsheet .sheet-wrap .sheet-dice-good,.charsheet .sheet-wrap .sheet-dice-bad,.charsheet .sheet-wrap .sheet-dice-default {display:none; position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; opacity:0;}
+.charsheet .sheet-wrap .sheet-dice-default {display:block !important;}
+.charsheet .sheet-wrap .sheet-dice-good {display:none !important;}
+.charsheet .sheet-wrap .sheet-dice-bad {display:none !important;}
+
+.charsheet .sheet-chk-dice-type[value="2"] ~ * .sheet-dice-default {display:none !important;}
+.charsheet .sheet-chk-dice-type[value="2"] ~ * .sheet-dice-good {display:block !important;}
+.charsheet .sheet-chk-dice-type[value="2"] ~ * .sheet-dice-bad {display:none !important;}
+
+.charsheet .sheet-chk-dice-type[value="3"] ~ * .sheet-dice-default {display:none !important;}
+.charsheet .sheet-chk-dice-type[value="3"] ~ * .sheet-dice-good {display:none !important;}
+.charsheet .sheet-chk-dice-type[value="3"] ~ * .sheet-dice-bad {display:block !important;}
+
+
+
+.charsheet /****************************************************
+	Default Layout
+****************************************************/
+
+.charsheet .sheet-wrap {display:block; position:relative; margin:0 auto; width:850px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/txh9QpF.jpg') repeat-y 50% 0;}
+.charsheet .sheet-wrap-inner {display:block; position:relative; min-height:1200px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/nzhkFZc.png') no-repeat 50% 0; z-index:1;}
+
+.charsheet .sheet-memo {display:block; position:relative; padding:20px 0 40px; clear:both;}
+.charsheet .sheet-memo textarea {display:block; position:relative; border-radius:15px !important; height:200px; background:rgba(95,118,130,.5); padding:20px; font-size:14px; line-height:1.5; color:#fff; font-family:'RIDIBatang';}
+.charsheet .sheet-bottom-obj {position:absolute; left:0; right:0; bottom:0; z-index:-1;}
+.charsheet .sheet-bottom-obj img {display:block; width:100%;}
+
+
+
+
+.charsheet /****************************************************
+	Header
+****************************************************/
+
+.sheet-header {position:relative; height:292px;}
+.charsheet .sheet-header * {font-family:'HeirofLightRegular'; font-weight:600;}
+.charsheet .sheet-header .sheet-avatar {position:absolute; top:20px; left:23px; width:157px; height:225px;}
+.charsheet .sheet-header .sheet-avatar:before {content:""; display:block; position:absolute; top:0; left:0; right:0; bottom:0; z-index:1; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/K1wXxcV.png') no-repeat 50% 50%;}
+.charsheet .sheet-header .sheet-avatar > div {position:absolute; top:50%; left:50%; margin-top:-95px; margin-left:-62px; width:125px; height:191px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/NoKf0Qj.png') no-repeat 50% 50%; overflow:hidden; z-index:0;}
+.charsheet .sheet-header .sheet-avatar > div img {display:block; width:100%; height:100%; object-fit:cover;}
+
+.charsheet .sheet-header .sheet-simple-prof {position:absolute; top:36px; left:275px; width:180px;}
+.charsheet .sheet-header .sheet-simple-prof .sheet-owner input {font-size:14px; height:28px; opacity:.8; padding:0; font-family: 'HeirofLightBold';}
+.charsheet .sheet-header .sheet-simple-prof .sheet-name {margin-bottom:12px;}
+.charsheet .sheet-header .sheet-simple-prof .sheet-name input {font-size:20px; height:28px; padding:0; font-family: 'HeirofLightBold';}
+.charsheet .sheet-header .sheet-simple-prof .sheet-profform-box {margin-left:45px;}
+
+.charsheet .sheet-header .sheet-simple-state {position:absolute; top:64px; left:524px; width:290px;}
+.charsheet .sheet-header .sheet-simple-state .sheet-state-side {margin-left:50px;}
+
+
+
+.charsheet /****************************************************
+	Mid
+****************************************************/
+
+.sheet-mid {position:relative; margin-left:58px;}
+.charsheet .sheet-mid .sheet-logo {display:block; position:relative;}
+.charsheet .sheet-mid .sheet-text-group {position:absolute; left:185px; bottom:10px; width:245px;}
+
+
+
+
+.charsheet /****************************************************
+	Sheet Control
+****************************************************/
+
+.sheet-sheet-control {position:relative; padding-left:210px;}
+.charsheet .sheet-sheet-control .sheet-tabs {position:absolute; top:20px; left:0; width:186px; height:127px; box-sizing:border-box; padding:60px 16px 0 7px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/bblQg9c.png') no-repeat 0 0;}
+.charsheet .sheet-sheet-control .sheet-tabs div {display:block; position:relative; height:50%; line-height:33px; text-align:center; color:#fff; font-family:'HeirofLightBold'; font-size:13px; text-shadow: 0px 0px 7px rgba(0, 0, 0, 0.9);}
+.charsheet .sheet-sheet-control .sheet-tabs div input[type="checkbox"] {display:block; position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; z-index:1;}
+
+.charsheet .sheet-sheet-control .sheet-other {margin-bottom:20px;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group {padding-top:10px; margin-bottom:10px;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group * {font-family:'HeirofLightRegular';}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group span {font-size:13px;  font-family: 'RIDIBatang'; font-weight:800;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group select {background:transparent; width:1.5em;
+	text-align-last: center;
+	text-align: center;
+	-ms-text-align-last: center;
+	-moz-text-align-last: center;
+}
+
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check {position:relative; overflow:hidden;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check input[type="radio"] {width:100%; height:100%; z-index:1;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check + .sheet-dice-check input[type="radio"] {right:4.5em; left:auto;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check input[type="radio"]:checked + span,.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check input[type="radio"]:checked + span select {font-weight:800; color:#1b72a4;}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check input[type="radio"]:checked + span:before {content:"[";}
+.charsheet .sheet-sheet-control .sheet-other .sheet-text-group .sheet-dice-check input[type="radio"]:checked + span:after {content:"]";}
+
+
+.charsheet /*****************************************
+	Spec / Skill List
+*****************************************/
+
+.charsheet .sheet-specs-wrap {position:relative; padding:15px 15px 15px; margin-top:15px;}
+
+.charsheet .sheet-specs-box {display:block; margin:0; overflow:hidden;}
+.charsheet .sheet-specs-box .sheet-item {display:block; position:relative; width:67px; height:95px; margin:0 1px; float:left; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/lUR0XKW.png') no-repeat 50% 50%;}
+.charsheet .sheet-specs-box .sheet-item > * {display:block; position:relative; z-index:1;}
+.charsheet .sheet-specs-box .sheet-item .sheet-tit {display:block; position:relative; padding-top:13px; text-align:center; z-index:1; height:35px;}
+.charsheet .sheet-specs-box .sheet-item .sheet-tit strong {font-size:12px; color:#fff; font-family:'HeirofLightRegular'; font-weight:400;}
+.charsheet .sheet-specs-box .sheet-item .sheet-tit + div {display:block; position:relative; height:72px; z-index:0;}
+.charsheet .sheet-specs-box .sheet-item input[type="text"],.charsheet .sheet-specs-box .sheet-item input[type="number"] {height:60px; text-align:center; font-size:24px; font-weight:800; font-family:'HeirofLightRegular'; padding-bottom:15px; position:relative; z-index:0; color:#fff;}
+
+.charsheet .sheet-chk-edit,.charsheet .sheet-chk-edit-label {display:block; position:absolute; width:75px; height:15px !important; top:0 !important; right:15px; left:auto !important;}
+.charsheet .sheet-chk-edit-label span {display:block; float:left; margin-right:3px; color:rgba(15,15,16,1); font-weight:600;}
+.charsheet .sheet-chk-edit {z-index:2;}
+.charsheet .sheet-chk-edit-label {z-index:0; opacity:.8;}
+.charsheet .sheet-chk-edit-label strong {display:block; position:relative; float:right; width:40px; height:11px; border-radius:9em; overflow:hidden; background:rgba(15,15,16,.3); margin-top:3px;}
+.charsheet .sheet-chk-edit-label strong:before {content:""; display:block; position:absolute; top:0; bottom:0; left:0; width:60%; border-radius:9em; background:rgba(15,15,16,1); transition:.3s all; -webkit-transition:.3s all;}
+.charsheet .sheet-chk-edit:checked + .sheet-chk-edit-label {opacity:1;}
+.charsheet .sheet-chk-edit:checked + .sheet-chk-edit-label strong:before {left:40%;}
+.charsheet .sheet-chk-edit:checked ~ * .sheet-spec-item .sheet-edit {display:block !important;}
+.charsheet .sheet-chk-edit:checked ~ * .sheet-spec-item .sheet-read {display:none !important;}
+
+.charsheet .sheet-chk-edit ~ * .sheet-group .repcontrol {display:none !important;}
+.charsheet .sheet-chk-edit:checked ~ * .sheet-group .repcontrol {display:block !important; margin-top:5px !important;}
+.charsheet .sheet-chk-edit:checked ~ * .sheet-group .sheet-w-txt > input[type="text"] {border-bottom:1px solid rgba(0,0,0,.5);}
+
+.charsheet .sheet-group .sheet-w-txt > input[type="text"] {font-size:13px; color:#0f0f10;}
+
+.charsheet .sheet-spec-list {display:block; position:relative; overflow:hidden; margin-top:10px;}
+.charsheet .sheet-spec-list .sheet-group {display:block; position:relative; width:33.33%; padding:10px; float:left; border-right:1px solid rgba(61,69,76,.2);}
+.charsheet .sheet-spec-list .sheet-group.last {border:none;}
+.charsheet .sheet-spec-list * {font-family: 'RIDIBatang';}
+
+.charsheet .sheet-spec-item {display:block; position:relative; padding-left:35px;}
+.charsheet .sheet-spec-item .sheet-chk-spec {display:block; position:absolute; left:0; width:24px; height:25px !important; top:50% !important; transform:translateY(-50%); -webit-transform:translateY(-50%); background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/0nCjtse.png') no-repeat left 5px top 50%; opacity:1 !important; z-index:1;}
+.charsheet .sheet-spec-item .sheet-chk-spec:checked {background-position:right 4px top 50%;}
+.charsheet .sheet-spec-item .sheet-edit {display:none !important;}
+.charsheet .sheet-spec-item .sheet-name {display:block; position:relative; margin-right:45px; height:30px; line-height:30px; z-index:0; font-size:13px; }
+.charsheet .sheet-spec-item .sheet-name p {display:block; position:relative; line-height:30px; color:#0f0f10;}
+.charsheet .sheet-spec-item .sheet-name .sheet-read,.charsheet .sheet-spec-item .sheet-name .sheet-edit {display:block; position:absolute; top:0; left:0; right:0; bottom:0;}
+.charsheet .sheet-spec-item .sheet-grade {display:block; position:absolute; right:0; top:0; width:40px; bottom:0; z-index:1;}
+.charsheet .sheet-spec-item .sheet-grade > input[type="number"].sheet-read {display:block; position:absolute; top:5px; right:0; left:0; width:100%; height:20px; border-radius:9em !important; background:rgba(61,69,76,.15); text-align:center; color:#000;}
+.charsheet .sheet-spec-item .sheet-grade > input[type="number"].sheet-edit {display:block; position:absolute; top:5px; right:0; left:0; width:100%; height:20px; border-bottom:1px solid rgba(0,0,0,.2); text-align:center; color:#000;}
+.charsheet .sheet-spec-item .sheet-name .sheet-w-txt {display:block; position:relative; padding-right:40px;}
+.charsheet .sheet-spec-item .sheet-name .sheet-w-txt span {display:block; position:absolute; top:0; right:0; bottom:0; width:40px;}
+
+
+
+.charsheet /*****************************************
+	Toggle Pannel
+*****************************************/
+
+.charsheet .sheet-toggle-wrap {display:none; position:absolute; padding:110px; top:0; left:0; width:100%; height:100%; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/btBLHY1.jpg') no-repeat 50% 0 #3c444b; z-index:-999; box-sizing:border-box;}
+.charsheet .sheet-toggle-wrap > div {display:block; position:relative; padding:10px; overflow:auto; max-height:945px; height:100%; box-sizing:border-box; z-index:0;}
+.charsheet .sheet-toggle-wrap > div::-webkit-scrollbar {width: 3px;}
+.charsheet .sheet-toggle-wrap > div::-webkit-scrollbar-track {background-color: transparent;}
+.charsheet .sheet-toggle-wrap > div::-webkit-scrollbar-thumb {border-radius: 3px; background-color: gray;}
+.charsheet .sheet-toggle-wrap > div::-webkit-scrollbar-button {width: 0;height: 0;}
+.charsheet .sheet-toggle-wrap .sheet-close {display:block; position:absolute; top:130px; left:50%; width:30px; height:30px; margin-left:-15px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/mgXRJtY.png') no-repeat 50% 50%; z-index:5;}
+.charsheet .sheet-toggle-wrap .sheet-close input {display:block; position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; z-index:1;}
+
+.charsheet .sheet-toggle-wrap .sheet-title {display:block; position:Relative; width:256px; height:86px; line-height:77px; text-align:center; box-sizing:border-box; margin:40px auto 0; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/TkEhv8n.png') no-repeat 50% 50%; font-size:15px; color:#000000; font-family: 'HeirofLightBold'; font-weight:800;}
+.charsheet .sheet-toggle-wrap .sheet-title strong {font-family: 'HeirofLightBold'; font-weight:800;}
+
+.charsheet .sheet-toggle-wrap .sheet-sub-title {position:relative; padding:0; margin-bottom:15px; font-family: 'HeirofLightBold'; font-weight:800;}
+.charsheet .sheet-toggle-wrap .sheet-sub-title strong {display:block; font-size:15px; font-family: 'HeirofLightBold'; font-weight:800;}
+.charsheet .sheet-toggle-wrap *  ~ .sheet-sub-title {margin-top:20px;}
+
+.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side {position:absolute; top:0; right:0; padding-right:30px;}
+.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side select,.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side span {display:block; position:relative; height:30px; line-height:30px; padding:0 30px 0 10px; background-size:10px auto; background-position:top 50% right 10px;}
+.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side select {border-bottom:1px solid rgba(0,0,0,.4);}
+.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side span {padding-right:10px;}
+.charsheet .sheet-toggle-wrap .sheet-sub-title .sheet-side .sheet-dice {display:block; position:absolute; top:0; right:0;}
+
+
+.charsheet .sheet-toggle-wrap {transform:translateY(-100%); -webkit-transform:translateY(-100%);}
+.charsheet .sheet-pannel-wrap {transform:translateY(-100%); -webkit-transform:translateY-(100%);}
+
+.charsheet .sheet-view-type-weapon-check[value="1"] ~ * .sheet-weapon-wrap,.charsheet .sheet-view-type-backs-check[value="1"] ~ * .sheet-backs-wrap {display:block; z-index:999; transform:translateY(0); -webkit-transform:translateY(0);}
+
+.charsheet .sheet-view-type-weapon-check[value="1"] ~ .sheet-wrap,.charsheet .sheet-view-type-backs-check[value="1"] ~ .sheet-wrap {overflow:hidden; height:1200px;}
+
+
+
+.charsheet /*****************************************
+	Weapon / Talent List
+*****************************************/
+
+.charsheet .sheet-table {display:block; position:relative;}
+.charsheet .sheet-table select {background-size:10px auto; background-position:top 50% right 10px;}
+.charsheet .sheet-table .sheet-header {display:block; overflow:hidden; height:30px; background:#3d444c; margin:0 -5px; padding:0 15px; border-radius:5px;}
+.charsheet .sheet-table .sheet-row {display:block; position:relative; margin:0 10px; overflow:hidden; border-bottom:1px solid rgba(0,0,0,.1);}
+.charsheet .sheet-table .sheet-header > *,.charsheet .sheet-table .sheet-row > * {display:block; position:relative; float:left;}
+.charsheet .sheet-table .sheet-row > * {min-height:30px; line-height:30px; padding:5px 0;}
+.charsheet .sheet-table .sheet-row > * > * {text-align:center;}
+.charsheet .sheet-table .sheet-header > * {line-height:30px; height:30px; text-align:center; color:#fff;}
+.charsheet .sheet-table .sheet-family-data {display:none;}
+.charsheet .sheet-table .sheet-dic > button {width:30px !important; height:30px !important; top:5px !important; left:2px !important; opacity:1 !important;}
+.charsheet .sheet-table .sheet-name > input {text-align:center; font-size:13px; height:30px;}
+.charsheet .sheet-table .sheet-effect > input {font-size:12px; height:30px;}
+.charsheet .sheet-table .sheet-func > * {text-align:center; text-align-last:center; padding-right:15px !important; padding-left:5px !important;}
+.charsheet .sheet-table .sheet-dam > * {display:block; width:40% !important; float:left;}
+.charsheet .sheet-table .sheet-dam > * + * {width:60% !important;}
+.charsheet .sheet-table .sheet-name {width:20%;}
+.charsheet .sheet-table .sheet-effect {width:80%;}
+.charsheet .sheet-table .sheet-dic {width:35px;}
+.charsheet .sheet-table .sheet-weapon {width:110px;}
+.charsheet .sheet-table .sheet-func {width:140px;}
+.charsheet .sheet-table .sheet-dam {width:95px;}
+.charsheet .sheet-table .sheet-dir {width:55px;}
+.charsheet .sheet-table .sheet-count {width:55px;}
+.charsheet .sheet-table .sheet-bullet {width:55px;}
+.charsheet .sheet-table .sheet-fix {width:35px;}
+.charsheet .sheet-table .sheet-pice {width:80px;}
+.charsheet .sheet-table .sheet-def {width:100px;}
+.charsheet .sheet-table .sheet-desc {width:260px;}
+
+
+.charsheet /*****************************************
+	Background Layout
+*****************************************/
+
+.charsheet .sheet-backs-wrap textarea {background:rgba(0,0,0,.1); border-radius:10px !important; padding:10px; line-height:1.5; font-size:12px;}
+.charsheet .sheet-backs-wrap input[type="text"] {background:rgba(0,0,0,.1); border-radius:10px !important; padding:0 10px !important; line-height:1.5; font-size:12px;}
+.charsheet .sheet-backs-group {overflow:hidden;}
+.charsheet .sheet-backs-group .sheet-backs {display:block; position:relative; width:50%; padding:10px 15px; float:left;}
+.charsheet .sheet-backs-group ~ .sheet-sub-title {margin-left:15px;}
+.charsheet .sheet-backs-group .sheet-backs .sheet-cols-wrap {display:block; position:relative; overflow:hidden;}
+.charsheet .sheet-backs-group .sheet-backs .sheet-cols-wrap .sheet-cols {display:block; position:relative; padding:0 5px;}
+.charsheet .sheet-backs-group .sheet-backs .sheet-cols-wrap .sheet-cols + .sheet-cols  {margin-top:10px;}
+.charsheet .sheet-backs-group .sheet-backs .sheet-cols-wrap .sheet-cols textarea {display:block; position:relative; height:60px;}
+
+.charsheet .sheet-backs-group .sheet-rows {display:block; position:relative; padding-left:60px; height:30px; line-height:30px; margin-bottom:5px;}
+.charsheet .sheet-backs-group .sheet-rows strong {display:block; position:absolute; top:0; left:0; width:50px;}
+.charsheet .sheet-backs-group .sheet-rows span {display:block; position:relative; height:30px;}
+.charsheet .sheet-backs-group .sheet-txt textarea {height:60px;}
+
+
+.charsheet .sheet-backs-wrap .sheet-tit {display:block; position:relative; font-size:14px; padding-bottom:15px;}
+
+
+
+
+.charsheet /*****************************************
+	CoC Template Style
+*****************************************/
+
+.sheet-rolltemplate-coc {padding:10px 0; width: 100%;}
+.sheet-rolltemplate-coc:before,.sheet-rolltemplate-coc:after {content:""; display:block; position:relative; height:10px; clear:both; width: 100%;}
+.sheet-rolltemplate-coc .sheet-coc-wrap > span {content:""; display:block; position:absolute; width:80px; height:80px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/FMxa8WH.png') no-repeat 0 0; z-index:2;}
+.sheet-rolltemplate-coc .sheet-coc-wrap > span {top:-11px; left:-11px;}
+.sheet-rolltemplate-coc .sheet-coc-wrap > span + span {top:-11px; left:auto; right:-11px; background-position:100% 0;}
+.sheet-rolltemplate-coc .sheet-coc-wrap > span + span + span {top:auto; bottom:-11px; left:-11px; right:auto; background-position:0 100%;}
+.sheet-rolltemplate-coc .sheet-coc-wrap > span + span + span + span {top:auto; bottom:-11px; right:-11px; left:auto; background-position:100% 100%;}
+
+.sheet-rolltemplate-coc .sheet-coc-wrap {position:relative; padding:1px; border:2px solid #000000; font-size:12px; background:#fff; font-family:'RIDIBatang'; font-weight:600;}
+.sheet-rolltemplate-coc .sheet-coc-wrap .sheet-coc-content {border:1px solid #000; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/gy8V30Z.png');}
+
+.sheet-rolltemplate-coc *[class*="sheet-acc"] {display:block; position:absolute; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/XI37vTz.png') no-repeat 0 0; z-index:2;}
+.sheet-rolltemplate-coc .sheet-acc-top {width:140px; height:170px; top:-23px; left:-23px; background-position:0 0;}
+.sheet-rolltemplate-coc .sheet-acc-right {width:45px; height:65px; top:-6px; right:-13px; background-position:-237px -17px;}
+.sheet-rolltemplate-coc .sheet-acc-left {width:100px; height:66px; bottom:-5px; left:-17px; background-position:-5px -190px;}
+.sheet-rolltemplate-coc .sheet-acc-bottom {width:90px; height:109px; bottom:-13px; right:-13px; background-position:-192px -155px;}
+.sheet-rolltemplate-coc .sheet-coc-content {display:block; position:relative; padding:15px 0 0; min-height:100px; z-index:1; color:#000;}
+
+.sheet-rolltemplate-coc .sheet-top {display:block; position:relative; text-align:center;}
+
+.sheet-rolltemplate-coc .sheet-name {display:block; position:relative; margin-bottom:10px;}
+.sheet-rolltemplate-coc .sheet-name strong {display:block; position:relative; font-size:15px; font-weight:600; line-height:1.3; opacity:.5; font-family:'InkLipquid';}
+.sheet-rolltemplate-coc .sheet-name span {display:none; vertical-align:middle; opacity:.5; font-size:11px; font-weight:400;}
+.sheet-rolltemplate-coc .sheet-name span + span:before {content:"◆"; margin-right:2px; opacity:.5;}
+
+.sheet-rolltemplate-coc .sheet-dice-con {display:block; position:relative; padding:0 0 5px 0; overflow:hidden;}
+.sheet-rolltemplate-coc .sheet-dice-result {display:block; position:relative; margin:0 auto; width:73px; height:73px;  text-align:center; line-height:73px; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/uTKlS7N.png') no-repeat 50% 50%; font-size:24px; font-weight:800; color:#fff; font-family: 'HeirofLightBold';}
+.sheet-rolltemplate-coc * ~ .sheet-dice-result {display:block; position:absolute; top:0; left:0; width:73px; height:73px;}
+
+.sheet-rolltemplate-coc .sheet-dice-result,.sheet-rolltemplate-coc .sheet-dice-result span {font-family: 'HeirofLightBold';}
+
+.sheet-rolltemplate-coc .sheet-tit {display:block; position:relative; text-align:center; margin:0 0 10px; }
+.sheet-rolltemplate-coc .sheet-tit > strong {display:block; line-height:1.5; padding-bottom:10px; font-size:21px; color:#000; font-weight:800; font-family: 'HeirofLightBold';}
+.sheet-rolltemplate-coc .sheet-tit > strong > em {color:#ca1b1b !important; font-style:normal; font-family: 'HeirofLightBold';}
+
+.sheet-rolltemplate-coc .sheet-tit div {position:relative; background:url('https://imgsrv.roll20.net/?src=https%3A//i.imgur.com/5DJ2I3n.png') repeat-x; height:48px; padding:11px 10px; box-sizing:border-box; line-height:27px;}
+.sheet-rolltemplate-coc .sheet-tit div span {padding:0 10px; font-size:13px; font-weight:600; color:#fff;}
+.sheet-rolltemplate-coc .sheet-tit div span + span {padding-left:10px;}
+
+.sheet-rolltemplate-coc .sheet-dicetype {display:block; position:relative; font-weight:600; padding:5px; text-align:center; color:#000;}
+.sheet-rolltemplate-coc .sheet-dicetype em {font-style:normal; color:#000;}
+.sheet-rolltemplate-coc .sheet-dicetype strong {font-style:normal; color:#de0000;}
+
+.sheet-rolltemplate-coc .sheet-result {margin-top:20px; margin-bottom:20px;}
+.sheet-rolltemplate-coc .sheet-result > span {display:block; position:relative; height:25px; line-height:25px; text-align:center; color:#fff;
+	background: rgb(0,0,0); background: linear-gradient(-97deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
+}
+.sheet-rolltemplate-coc .sheet-result .sheet-fumble {background: rgb(255,0,42); background: linear-gradient(-97deg, rgba(255,0,42,0) 0%, rgba(255,0,42,1) 50%, rgba(255,0,42,0) 100%);}
+.sheet-rolltemplate-coc .sheet-result .sheet-fale {background: rgb(84,0,0); background: linear-gradient(-97deg, rgba(84,0,0,0) 0%, rgba(84,0,0,1) 50%, rgba(84,0,0,0) 100%);}
+.sheet-rolltemplate-coc .sheet-result .sheet-success {background: rgb(21,105,96); background: linear-gradient(-97deg, rgba(21,105,96,0) 0%, rgba(21,105,96,1) 50%, rgba(21,105,96,0) 100%);}
+.sheet-rolltemplate-coc .sheet-result .sheet-hard-success {background: rgb(82,153,78); background: linear-gradient(-97deg, rgba(82,153,78,0) 0%, rgba(82,153,78,1) 50%, rgba(82,153,78,0) 100%);}
+.sheet-rolltemplate-coc .sheet-result .sheet-extreme-success {background: rgb(62,192,181); background: linear-gradient(-97deg, rgba(62,192,181,0) 0%, rgba(62,192,181,1) 80%, rgba(62,192,181,0) 100%);}
+.sheet-rolltemplate-coc .sheet-result .sheet-critical {background: rgb(104, 185, 0); background: linear-gradient(-97deg, rgba(104, 185, 0,0) 0%, rgba(104, 185, 0,1) 50%, rgba(104, 185, 0,0) 100%);}
+
+.sheet-rolltemplate-coc .sheet-dice-list {display:table; width:100%; padding:10px 0 5px;}
+.sheet-rolltemplate-coc .sheet-dice-list > div {display:table-cell; width:1%; text-align:center; vertical-align:middle; padding:5px 0; font-size:15px;}
+.sheet-rolltemplate-coc .sheet-dice-list > div + div {border-left:1px solid rgba(0,0,0,.2);}
+.sheet-rolltemplate-coc .sheet-dice-list * {font-family: 'HeirofLightBold';}
+
+.sheet-rolltemplate-coc .inlinerollresult {display:inline !important; font-size:1em !important; opacity:1 !important; padding:0 !important; background:transparent !important; border:none !important;}
+
+.sheet-rolltemplate-coc .sheet-desc {display:block; line-height:1.4; padding:5px 15px 10px;}
+.sheet-rolltemplate-coc .sheet-desc strong {display:inline-block; padding:1px 6px; vertical-align:middle; font-size:12px; font-weight:400; background:rgba(213,170,103,1); color:#fff; margin-bottom:2px; border-radius:3px;}
+.sheet-rolltemplate-coc .sheet-desc p {display:block; padding-top:10px; text-align:center;}
+.sheet-rolltemplate-coc .sheet-damage,.sheet-rolltemplate-coc .sheet-defense {border-top:1px solid rgba(0,0,0,.2); padding:10px 0 10px;}
+.sheet-rolltemplate-coc .sheet-damage {display:block; text-align:center;}
+.sheet-rolltemplate-coc .sheet-damage span {color:#ff5858;}
+.sheet-rolltemplate-coc .sheet-defense span {color:#b7f796;}
