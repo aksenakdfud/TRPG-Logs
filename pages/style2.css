@@ -21,7 +21,6 @@ body {
     font-weight: 700;
     display: flex;
     justify-content: center;
-    text-align: center !important;
 }
 
 .desc > img {
@@ -31,7 +30,6 @@ body {
 }
 
 .message {
-    background-color: #fafafa;
     padding: 4px;
     margin-bottom: 6px;
     border-radius: 5px;
